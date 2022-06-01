@@ -1,7 +1,9 @@
 <template>
-<div>
-  <Title />
-</div>
+    <div v-if="showPage">
+        <Header :header="page.header" class="max-w-2xl mx-auto"/>
+        <div class="bg-green-separator"></div>
+        <Banner :banner="page.banner"/>
+    </div>
 </template>
 
 <script>
@@ -12,8 +14,11 @@ export default {
     name: "IndexPage",
     data() {
         return {
-            page: [],
-            assets: []
+            showPage : false,
+            page: {
+                header : {},
+                banner : {}
+            },
         };
     },
     mounted() {
@@ -21,11 +26,29 @@ export default {
     },
     methods: {
         async getPosts() {
-            await client.getEntry('oBzgoVONtgfjTCn1sTpWJ')
+            await client.getEntries({
+                content_type:'page'
+            })
                 .then(response => {
-                    console.log(response);
-                });
+                response.items.map( el =>{
+                    console.log(el.fields)
+                    this.page.header = el.fields.header
+                    this.page.banner = el.fields.banner
+                    this.showPage = true;
+                })
+            });
         }
     },
 }
 </script>
+<style>
+
+    body{
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .bg-green-separator{
+        background-color: #96c93d;
+        height: 15px;
+    }
+</style>
