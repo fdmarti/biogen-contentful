@@ -3,24 +3,23 @@
         <Header :header="page.header" class="max-w-2xl mx-auto"/>
         <div class="bg-green-separator"></div>
         <Banner :banner="page.banner"/>
-        <Dropdown/>
+        <Form :form="page.form"/>
     </div>
 </template>
 
 <script>
 import {  createClient } from '@/plugins/contentful'
-import Dropdown from '../components/Dropdown.vue';
 const client = createClient();
 
 export default {
-  components: { Dropdown },
     name: "IndexPage",
     data() {
         return {
             showPage : false,
             page: {
                 header : {},
-                banner : {}
+                banner : {},
+                form : {}
             },
         };
     },
@@ -34,9 +33,9 @@ export default {
             })
                 .then(response => {
                 response.items.map( el =>{
-                    console.log(el.fields)
                     this.page.header = el.fields.header
                     this.page.banner = el.fields.banner
+                    this.page.form = el.fields.form
                     this.showPage = true;
                 })
             });

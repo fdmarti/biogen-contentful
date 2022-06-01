@@ -25,7 +25,7 @@
             };
         },
         mounted() {
-            console.log(this.getCountries());
+            this.getCountries();
         },
         methods: {
             async getCountries() {
