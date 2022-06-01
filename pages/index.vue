@@ -1,7 +1,6 @@
 <template>
 <div>
   <Title />
-  {{page}}
 </div>
 </template>
 
@@ -13,7 +12,8 @@ export default {
     name: "IndexPage",
     data() {
         return {
-            page: []
+            page: [],
+            assets: []
         };
     },
     mounted() {
@@ -21,11 +21,9 @@ export default {
     },
     methods: {
         async getPosts() {
-            await client.getEntries({
-                content_type: 'page'
-            })
+            await client.getEntry('oBzgoVONtgfjTCn1sTpWJ')
                 .then(response => {
-                  console.log(response)
+                    console.log(response);
                 });
         }
     },
