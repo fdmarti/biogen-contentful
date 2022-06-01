@@ -19,11 +19,13 @@ export default{
 
 const contentful = require('contentful')
 const client = contentful.createClient({
-  space: 'f4cwegc8dwoa',
-  environment: 'master', // defaults to 'master' if not set
-  accessToken: '5roN7oSggUAq--DJxECO0XGC-UXCBzBKwVSFRcO6Tf8'
+	space: process.env.CTF_SPACE_ID,
+	accessToken: process.env.CTF_CDA_ACCESS_TOKEN
 })
 client.getEntry('4prKyCBmEikaFurk1mlWT0').then(function (entry) {
   console.log(entry.fields.label);
+  console.log(entry.fields.title);
 });
+
+
 </script>
