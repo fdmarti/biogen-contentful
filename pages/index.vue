@@ -1,16 +1,10 @@
 <template>
-<<<<<<< HEAD
-<div>
-  <Title />
-  <Dropdown/>
-</div>
-=======
     <div v-if="showPage">
         <Header :header="page.header" class="max-w-2xl mx-auto"/>
         <div class="bg-green-separator"></div>
         <Banner :banner="page.banner"/>
+        <Dropdown/>
     </div>
->>>>>>> e0fd47c59dbb46d59f0bd25ab574449508b64ab4
 </template>
 
 <script>
