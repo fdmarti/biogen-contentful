@@ -1,14 +1,17 @@
 <template>
 <div>
   <Title />
+  <Dropdown/>
 </div>
 </template>
 
 <script>
 import {  createClient } from '@/plugins/contentful'
+import Dropdown from '../components/Dropdown.vue';
 const client = createClient();
 
 export default {
+  components: { Dropdown },
     name: "IndexPage",
     data() {
         return {
