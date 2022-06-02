@@ -46,6 +46,7 @@
     .form-group{
         display: flex;
         justify-content: center;
+        margin: -30px 0 10px 0;
     }
     label{
         color: rgb(112, 112, 112);
