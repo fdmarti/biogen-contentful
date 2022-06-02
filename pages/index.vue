@@ -4,6 +4,8 @@
         <div class="bg-green-separator"></div>
         <Banner :banner="page.banner"/>
         <Form :form="page.form"/>
+        <Footer :footer="page.footer"/>
+        <div class="bg-blue-separator"></div>
     </div>
 </template>
 
@@ -19,7 +21,8 @@ export default {
             page: {
                 header : {},
                 banner : {},
-                form : {}
+                form : {},
+                footer: {}
             },
         };
     },
@@ -33,9 +36,11 @@ export default {
             })
                 .then(response => {
                 response.items.map( el =>{
+                    console.log(el.fields)
                     this.page.header = el.fields.header
                     this.page.banner = el.fields.banner
                     this.page.form = el.fields.form
+                    this.page.footer = el.fields.footer
                     this.showPage = true;
                 })
             });
@@ -51,6 +56,11 @@ export default {
 
     .bg-green-separator{
         background-color: #96c93d;
+        height: 15px;
+    }
+
+    .bg-blue-separator{
+        background-color: #508197;
         height: 15px;
     }
 </style>

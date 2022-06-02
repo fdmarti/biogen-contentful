@@ -13,7 +13,6 @@
     export default {
         name: "inputComponent",
         props:['dataInput']
-
     }
 </script>
 
