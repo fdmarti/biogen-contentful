@@ -4,10 +4,11 @@
             <div class="input">
                 <label for="country">{{dropdownTitle}}</label>
                 <select class="form-control">
-                    <option :value="country" v-for="(country, index) in dropdownData" :key="country" :disabled="index === 0" :selected="index === 0" required>{{country}}</option>
+                    <option :value="value" v-for="(value, index) in dropdownData" :key="value" :disabled="index === 0" :selected="index === 0" required>{{value}}</option>
                 </select>
                 <div class="arrow"></div>
             </div>
+
         </div>
     </div>
 </template>
@@ -18,21 +19,23 @@
 
     export default {
         name: "dropdownComponent",
+        props: ['dataDropdown'],
         data() {
             return {
                 dropdownTitle : [],
                 dropdownData : []
             };
         },
-        mounted() {
-            this.getCountries();
+        mounted(){
+            this.getCountries(this.dataDropdown.sys.id);
         },
+ 
         methods: {
-            async getCountries() {
-                await client.getEntry('4prKyCBmEikaFurk1mlWT0')
+            async getCountries(iIdEntry) {
+                await client.getEntry(iIdEntry)
                     .then(entry => {
-                    this.dropdownTitle  = entry.fields.title
-                    this.dropdownData = entry.fields.label
+                        this.dropdownTitle  = entry.fields.title
+                        this.dropdownData = entry.fields.label
                     });
             },
         },

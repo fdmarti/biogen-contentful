@@ -1,11 +1,11 @@
 <template>
-    <div class="mt-10">
+    <div class="mt-10" v-if="showForm">
         <Input :dataInput="formFields.firstName"/>
         <Input :dataInput="formFields.lastName"/>
-        <Dropdown/>
+        <Dropdown :dataDropdown="formFields.country"/>
         <Input :dataInput="formFields.professionalId"/>
         <Input :dataInput="formFields.phoneNumber"/>
-        <Dropdown/>
+        <Dropdown :dataDropdown="formFields.speciality"/>
         <Input :dataInput="formFields.institution"/>
         <Richtext :dataRichtext="formFields.termsAndConditions"/>
         <Checkbox :dataCheckbox="formFields.agreeInformation"/>
@@ -21,17 +21,21 @@ export default {
     data() {
         return {
             iIdForm: this.form.sys.id,
+            showForm : false,
             formFields: {},
         };
     },
+
     mounted() {
-        this.getFormFields();
+        this.getFormFields()
     },
+
     methods: {
-        getFormFields() {
-            client.getEntry(this.iIdForm)
+        async getFormFields() {
+            await client.getEntry(this.iIdForm)
                 .then(response => {
                 this.formFields = response.fields;
+                this.showForm = true;
             });
         }
     }

@@ -36,7 +36,6 @@ export default {
             })
                 .then(response => {
                 response.items.map( el =>{
-                    console.log(el.fields)
                     this.page.header = el.fields.header
                     this.page.banner = el.fields.banner
                     this.page.form = el.fields.form
