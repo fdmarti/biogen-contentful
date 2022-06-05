@@ -2,7 +2,7 @@
     <div class="form-group" v-if="dataInput">
         <div class="form">
             <div class="input">
-                <label for="country">{{dataInput.fields.label}}</label>
+                <label>{{dataInput.fields.label}}</label>
                 <input type="text" class="form-control">
             </div>
         </div>
@@ -16,7 +16,7 @@
     }
 </script>
 
-<style scoped>
+<style>
     .form{
         width: 720px;
     }
@@ -50,6 +50,18 @@
 
     option:disabled {
     color: -internal-light-dark(gretext, rgb(170, 170, 170));
-}
+    }
+    input:focus{
+        outline: #007bff40 solid 3.5px;
+        border: #80bdff solid 1px;
+    }
+    .valid:focus{
+        outline: #28a74540 solid 3.5px;
+        border: #28a745 solid 1px;
+    }
+    .invalid:focus{
+        outline: #dc354540 solid 3.5px;
+        border: #dc3545 solid 1px;
+    }
 
 </style>

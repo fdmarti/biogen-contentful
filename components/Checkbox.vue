@@ -1,7 +1,7 @@
 <template>
   <div v-if="dataCheckbox" class="form-group">
     <section class="form">
-      <input type="checkbox" class="" :id="dataCheckbox.fields.title">
+      <input type="checkbox"  class="form-control" :id="dataCheckbox.fields.title">
       <label :for="dataCheckbox.fields.title">{{dataCheckbox.fields.checkbox.join()}}*</label>
     </section>
   </div>
@@ -9,7 +9,7 @@
 
 <script>
 export default {
-    props : ['dataCheckbox']
+    props : ['dataCheckbox'],
 }
 </script>
 
@@ -36,6 +36,9 @@ export default {
         height: 19px;
         margin: 0px 12px 0px 0px;
         cursor: pointer;
+        color: rgb(112, 112, 112);
+        font: 400 14px / 15px Poppins, "Open Sans", Arial, sans-serif;
+        border: solid 1px transparent;
     }
     input::before{
         content: "";
@@ -48,5 +51,17 @@ export default {
         outline: rgb(204, 204, 204) solid 1px;
         border: 3px solid rgb(255, 255, 255);
         pointer-events: all;
+        background-color: #fff;
     }
+    input:checked:before{
+      background:  0% 0% / 10px 10px rgb(204, 204, 204);
+    }
+    label, input{
+      display: inline;
+    }
+    input:focus{
+        outline: none;
+        border: none;
+    }
+
 </style>

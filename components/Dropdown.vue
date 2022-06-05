@@ -6,7 +6,6 @@
                 <select class="form-control">
                     <option :value="value" v-for="(value, index) in dropdownData" :key="value" :disabled="index === 0" :selected="index === 0" required>{{value}}</option>
                 </select>
-                <div class="arrow"></div>
             </div>
 
         </div>
@@ -43,28 +42,14 @@
 </script>
 
 <style scoped>
-    .form{
-        width: 720px;
-    }
-    .form-group{
-        display: flex;
-        justify-content: center;
-        margin: -30px 0 10px 0;
-    }
-    label{
-        color: rgb(112, 112, 112);
-        font: 300 12px / 15px Poppins, "Open Sans", Arial, sans-serif; 
-        display: block;
-        margin-bottom: 5px;
-    }
-    .input{
-        min-height: 66px;
-    }
+.input{
+    position: relative;
+}
     .input::before{
         content: '';
-        position: relative;
+        position: absolute;
         left: 100%;
-        top: 61px;
+        top: 34px;
         width: 0; 
         height: 0; 
         border-left: 5px solid transparent;
@@ -83,8 +68,14 @@
         height: 32px;
         padding-left: 10px;
         appearance: none;
+        box-shadow:none;
     }
-
+    select:focus{
+        outline: 0px;
+        box-shadow: #007bff40 0px 0px 0px 0.2rem;
+        border: #80bdff solid 1px;
+            
+    }
     option:disabled {
     color: -internal-light-dark(gretext, rgb(170, 170, 170));
 }
