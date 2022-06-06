@@ -1,17 +1,18 @@
 <template>
     <div class="mt-10" v-if="showForm">
-        <Input :dataInput="formFields.firstName"/>
-        <Input :dataInput="formFields.lastName"/>
-        <Dropdown :dataDropdown="formFields.country"/>
-        <Input :dataInput="formFields.professionalId"/>
-        <Input :dataInput="formFields.emailAddress"/>
-        <Input :dataInput="formFields.phoneNumber"/>
-        <Dropdown :dataDropdown="formFields.speciality"/>
-        <Input :dataInput="formFields.institution"/>
+        <Input :dataInput="formFields.firstName" v-model="contentForm.firstName.value" :error="contentForm.firstName.error"/>
+        <Input :dataInput="formFields.lastName" v-model="contentForm.lastName.value" :error="contentForm.lastName.error"/>
+        <Dropdown :dataDropdown="formFields.country" v-model="contentForm.country.value" :error="contentForm.country.error"/>
+        <Input :dataInput="formFields.professionalId" v-model="contentForm.professionalId.value"/>
+        <Input :dataInput="formFields.emailAddress" v-model="contentForm.emailAddress.value" :error="contentForm.emailAddress.error"/>
+        <Input :dataInput="formFields.phoneNumber" v-model="contentForm.phoneNumber.value"/>
+        <Dropdown :dataDropdown="formFields.speciality" v-model="contentForm.speciality.value"/>
+        <Input :dataInput="formFields.institution" v-model="contentForm.institution.value"/>
         <Richtext :dataRichtext="formFields.termsAndConditions"/>
-        <Checkbox :dataCheckbox="formFields.agreeInformation"/>
-        <Button />
+        <Checkbox :dataCheckbox="formFields.agreeInformation" v-model="contentForm.agreeInformation.value"/>
+        <Button @submitForm="submitForm"/>
     </div>
+
 </template>
 <script>
 import {  createClient } from '@/plugins/contentful'
@@ -24,6 +25,17 @@ export default {
             iIdForm: this.form.sys.id,
             showForm : false,
             formFields: {},
+            contentForm:{
+                firstName: { value: '', error : false },
+                lastName: { value: '', error : false },
+                country: { value: null, error : false },
+                professionalId: { value : ''},
+                emailAddress: { value: '', error : false },
+                phoneNumber: { value : ''},
+                speciality: { value : null},
+                institution: { value : ''},
+                agreeInformation: { value : false},
+            }
         };
     },
 
@@ -38,6 +50,26 @@ export default {
                 this.formFields = response.fields;
                 this.showForm = true;
             });
+        },
+
+        submitForm(){
+
+            !this.contentForm.firstName.value ? this.contentForm.firstName.error = true : this.contentForm.firstName.error = false
+            !this.contentForm.lastName.value ? this.contentForm.lastName.error = true : this.contentForm.lastName.error = false
+            !this.contentForm.country.value ? this.contentForm.country.error = true : this.contentForm.country.error = false
+            !this.contentForm.emailAddress.value ? this.contentForm.emailAddress.error = true : this.contentForm.emailAddress.error = false
+
+            const objectForm = Object.values(this.contentForm)
+            let errors = 0;
+
+            objectForm.forEach( el => {
+                if (el.error) errors = errors+1
+            })
+
+            if ( !errors ) console.log("aca se mandaria el form")
+
+            
+         
         }
     }
 }
