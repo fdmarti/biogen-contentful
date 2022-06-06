@@ -3,10 +3,14 @@
         <div class="form">
             <div class="input">
                 <label for="country">{{dropdownTitle}}</label>
-                <select class="form-control">
+                <select class="form-control" @input="$emit('input', $event.target.value)" :value="value">
                     <option :value="value" v-for="(value, index) in dropdownData" :key="value" :disabled="index === 0" :selected="index === 0" required>{{value}}</option>
                 </select>
             </div>
+
+            <span v-if="error">
+                <h4>{{dropdownError}}</h4>
+            </span>
 
         </div>
     </div>
@@ -18,11 +22,12 @@
 
     export default {
         name: "dropdownComponent",
-        props: ['dataDropdown'],
+        props: ['dataDropdown','value','error'],
         data() {
             return {
                 dropdownTitle : [],
-                dropdownData : []
+                dropdownData : [],
+                dropdownError : null
             };
         },
         mounted(){
@@ -35,6 +40,7 @@
                     .then(entry => {
                         this.dropdownTitle  = entry.fields.title
                         this.dropdownData = entry.fields.label
+                        this.dropdownError = entry.fields.errorMessage
                     });
             },
         },

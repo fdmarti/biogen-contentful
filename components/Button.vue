@@ -1,7 +1,7 @@
 <template>
     <div class="form-group">
         <section class="form">
-            <button>Submit</button>
+            <button @click="$emit('submitForm')">Submit</button>
         </section>
     </div>
 </template>

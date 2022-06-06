@@ -3,8 +3,18 @@
         <div class="form">
             <div class="input">
                 <label>{{dataInput.fields.label}}</label>
-                <input :type="dataInput.fields.type" class="form-control">
+                <input 
+                    :type="dataInput.fields.type" 
+                    class="form-control"
+                    @input="$emit('input', $event.target.value)"
+                    :value="value"
+                >
             </div>
+
+            <span v-if="error">
+                <h4>{{dataInput.fields.errorMessage}}</h4>
+            </span>
+            
         </div>
     </div>
 </template>
@@ -12,7 +22,7 @@
 <script>
     export default {
         name: "inputComponent",
-        props:['dataInput']
+        props:['dataInput','value','error']
     }
 </script>
 
