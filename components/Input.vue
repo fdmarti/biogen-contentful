@@ -3,7 +3,7 @@
         <div class="form">
             <div class="input">
                 <label>{{dataInput.fields.label}}</label>
-                <input type="text" class="form-control">
+                <input :type="dataInput.fields.type" class="form-control">
             </div>
         </div>
     </div>
