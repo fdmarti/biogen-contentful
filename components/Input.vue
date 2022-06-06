@@ -12,7 +12,7 @@
             </div>
 
             <span v-if="error">
-                <h4>{{dataInput.fields.errorMessage}}</h4>
+                <h4 class="errorMessage">{{dataInput.fields.errorMessage}}</h4>
             </span>
             
         </div>
@@ -73,5 +73,13 @@
         outline: #dc354540 solid 3.5px;
         border: #dc3545 solid 1px;
     }
+    .errorMessage{
+        margin-bottom: 0;
+        font: 300 11px/13px Poppins, 'Open Sans', Arial, sans-serif;
+        width: 100%;
+        margin-top: 0.1rem;
+        color: #dc3545;
+    }
+
 
 </style>

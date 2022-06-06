@@ -9,7 +9,7 @@
         <Dropdown :dataDropdown="formFields.speciality" v-model="contentForm.speciality.value"/>
         <Input :dataInput="formFields.institution" v-model="contentForm.institution.value"/>
         <Richtext :dataRichtext="formFields.termsAndConditions"/>
-        <Checkbox :dataCheckbox="formFields.agreeInformation" v-model="contentForm.agreeInformation.value"/>
+        <Checkbox :dataCheckbox="formFields.agreeInformation" v-model="contentForm.agreeInformation.value" :error="contentForm.agreeInformation.error"/>
         <Button @submitForm="submitForm"/>
     </div>
 
@@ -58,6 +58,7 @@ export default {
             !this.contentForm.lastName.value ? this.contentForm.lastName.error = true : this.contentForm.lastName.error = false
             !this.contentForm.country.value ? this.contentForm.country.error = true : this.contentForm.country.error = false
             !this.contentForm.emailAddress.value ? this.contentForm.emailAddress.error = true : this.contentForm.emailAddress.error = false
+            !this.contentForm.agreeInformation.value ? this.contentForm.agreeInformation.error = true : this.contentForm.agreeInformation.error = false
 
             const objectForm = Object.values(this.contentForm)
             let errors = 0;

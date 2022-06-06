@@ -1,15 +1,24 @@
 <template>
   <div v-if="dataCheckbox" class="form-group">
     <section class="form">
-      <input type="checkbox"  class="form-control" :id="dataCheckbox.fields.title">
+      <input 
+      :id="dataCheckbox.fields.title"
+      type="checkbox" 
+      class="form-control"
+      @input="$emit('input', $event.target.value)" :value="value">
       <label :for="dataCheckbox.fields.title">{{dataCheckbox.fields.checkbox.join()}}*</label>
     </section>
+    
+    <span v-if="error">
+      <h4 class="errorMessage">{{dataCheckbox.fields.errorMessage}}</h4>
+    </span>
+
   </div>
 </template>
 
 <script>
 export default {
-    props : ['dataCheckbox'],
+    props : ['dataCheckbox', 'error'],
 }
 </script>
 
@@ -17,7 +26,7 @@ export default {
 
     .form-group{
         margin-top: 10px;
-        display: flex;
+        display: block;
         justify-content: center;
         align-content: center;
         padding: 0.1rem 0;

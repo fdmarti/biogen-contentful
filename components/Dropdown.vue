@@ -9,7 +9,7 @@
             </div>
 
             <span v-if="error">
-                <h4>{{dropdownError}}</h4>
+                <h4 class="errorMessage">{{dropdownError}}</h4>
             </span>
 
         </div>
