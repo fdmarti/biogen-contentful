@@ -3,7 +3,13 @@
         <div class="form">
             <div class="input">
                 <label for="country">{{dropdownTitle}}</label>
-                <select class="form-control" @input="$emit('input', $event.target.value)" :value="value" @change="$emit('eraseError',dropdownTitle)">
+                <select 
+                    class="form-control" 
+                    @input="$emit('input', $event.target.value)" 
+                    :value="value" 
+                    @change="$emit('eraseError',dropdownTitle)"
+                    :class="{'valid' : value}"
+                    >
                     <option :value="value" v-for="(value, index) in dropdownData" :key="value" :disabled="index === 0" :selected="index === 0" required>{{value}}</option>
                 </select>
             </div>
@@ -82,6 +88,16 @@
         border: #80bdff solid 1px;
             
     }
+
+    .valid{
+        border: #28a745 solid 1px;
+    }
+    .valid:focus{
+        outline: #28a74540 solid 3.5px;
+        border: #28a745 solid 1px;
+    }
+
+
     option:disabled {
     color: -internal-light-dark(gretext, rgb(170, 170, 170));
 }
