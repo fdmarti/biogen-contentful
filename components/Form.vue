@@ -1,8 +1,8 @@
 <template>
     <div class="mt-10" v-if="showForm">
-        <Input :dataInput="formFields.firstName" v-model="contentForm.firstName.value" :error="contentForm.firstName.error" @eraseError="eraseError(formFields)"/>
+        <Input :dataInput="formFields.firstName" v-model="contentForm.firstName.value" :error="contentForm.firstName.error" @eraseError="eraseError"/>
         <Input :dataInput="formFields.lastName" v-model="contentForm.lastName.value" :error="contentForm.lastName.error" @eraseError="eraseError"/>
-        <Dropdown :dataDropdown="formFields.country" v-model="contentForm.country.value" :error="contentForm.country.error"/>
+        <Dropdown :dataDropdown="formFields.country" v-model="contentForm.country.value" :error="contentForm.country.error" @eraseError="eraseError"/>
         <Input :dataInput="formFields.professionalId" v-model="contentForm.professionalId.value"/>
         <Input :dataInput="formFields.emailAddress" v-model="contentForm.emailAddress.value" :error="contentForm.emailAddress.error" @eraseError="eraseError"/>
         <Input :dataInput="formFields.phoneNumber" v-model="contentForm.phoneNumber.value"/>
@@ -64,6 +64,7 @@ export default {
             let errors = 0;
 
             objectForm.forEach( el => {
+                console.log(el)
                 if (el.error) errors = errors+1
             })
 
@@ -72,12 +73,14 @@ export default {
             
          
         },
-        eraseError(){
-            this.contentForm.firstName.error = false
-            this.contentForm.lastName.error = false
-            this.contentForm.country.error = false
-            this.contentForm.emailAddress.error  = false
-            this.contentForm.agreeInformation.error = false
+        eraseError(data){
+            switch(data){
+                case 'First Name*': this.contentForm.firstName.error = false; break;
+                case 'Last Name*': this.contentForm.lastName.error = false; break;
+                case 'Country*': this.contentForm.country.error = false; break;
+                case 'Email Address*': this.contentForm.emailAddress.error = false; break;
+                case 'Agree-Terms': this.contentForm.agreeInformation.error = false; break;
+            }
         }
     }
 }

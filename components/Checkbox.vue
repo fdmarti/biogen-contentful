@@ -7,7 +7,7 @@
         type="checkbox" 
         class="form-control"
         @input="$emit('input', $event.target.value)" 
-        @change="$emit('eraseError')">
+        @change="$emit('eraseError',dataCheckbox.fields.title)">
         <label :for="dataCheckbox.fields.title">{{dataCheckbox.fields.checkbox.join()}}*</label>
       </section>
       

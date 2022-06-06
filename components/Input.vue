@@ -9,7 +9,7 @@
                     @input="$emit('input', $event.target.value)"
                     :value="value"
                     :class="{'valid' : this.value.length > 0}"
-                    @keydown="$emit('eraseError')">
+                    @keydown="$emit('eraseError',dataInput.fields.label)">
             </div>
 
             <span v-if="error">

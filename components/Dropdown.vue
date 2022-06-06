@@ -3,7 +3,7 @@
         <div class="form">
             <div class="input">
                 <label for="country">{{dropdownTitle}}</label>
-                <select class="form-control" @input="$emit('input', $event.target.value)" :value="value">
+                <select class="form-control" @input="$emit('input', $event.target.value)" :value="value" @change="$emit('eraseError',dropdownTitle)">
                     <option :value="value" v-for="(value, index) in dropdownData" :key="value" :disabled="index === 0" :selected="index === 0" required>{{value}}</option>
                 </select>
             </div>
