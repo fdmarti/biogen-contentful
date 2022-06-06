@@ -1,17 +1,19 @@
 <template>
-  <div v-if="dataCheckbox" class="form-group">
-    <section class="form">
-      <input 
-      :id="dataCheckbox.fields.title"
-      type="checkbox" 
-      class="form-control"
-      @input="$emit('input', $event.target.value)" :value="value">
-      <label :for="dataCheckbox.fields.title">{{dataCheckbox.fields.checkbox.join()}}*</label>
-    </section>
-    
-    <span v-if="error">
-      <h4 class="errorMessage">{{dataCheckbox.fields.errorMessage}}</h4>
-    </span>
+  <div>
+    <div v-if="dataCheckbox" class="form-group">
+      <section class="form">
+        <input 
+        :id="dataCheckbox.fields.title"
+        type="checkbox" 
+        class="form-control"
+        @input="$emit('input', $event.target.value)" :value="value">
+        <label :for="dataCheckbox.fields.title">{{dataCheckbox.fields.checkbox.join()}}*</label>
+      </section>
+      
+    </div>
+      <span v-if="error" class="errorMessageContainer">
+        <h4 class="errorMessage">{{dataCheckbox.fields.errorMessage}}</h4>
+      </span>
 
   </div>
 </template>
@@ -26,7 +28,7 @@ export default {
 
     .form-group{
         margin-top: 10px;
-        display: block;
+        display: flex;
         justify-content: center;
         align-content: center;
         padding: 0.1rem 0;
@@ -72,5 +74,14 @@ export default {
         outline: none;
         border: none;
     }
+    .errorMessageContainer{
+      display: flex;
+      justify-content: center;
+    }
+    .errorMessage{
+      width: 720px;
+      margin-top: 15px;
+    }
+
 
 </style>

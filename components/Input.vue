@@ -74,10 +74,9 @@
         border: #dc3545 solid 1px;
     }
     .errorMessage{
-        margin-bottom: 0;
         font: 300 11px/13px Poppins, 'Open Sans', Arial, sans-serif;
         width: 100%;
-        margin-top: 0.1rem;
+        margin: -0.5rem 0 0.15rem;
         color: #dc3545;
     }
 

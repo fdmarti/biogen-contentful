@@ -62,7 +62,7 @@ export default {
         background-color: #508197;
         height: 15px;
     }
-    .form-group, .footer-group{
+    .form-group, .footer-group, .errorMessageContainer{
         margin: 0 20px;
     }
 </style>
