@@ -8,7 +8,8 @@
                     class="form-control"
                     @input="$emit('input', $event.target.value)"
                     :value="value"
-                >
+                    :class="{'valid' : this.value.length > 0}"
+                    @keydown="$emit('eraseError')">
             </div>
 
             <span v-if="error">
@@ -22,7 +23,8 @@
 <script>
     export default {
         name: "inputComponent",
-        props:['dataInput','value','error']
+        props:['dataInput','value','error'],
+        error: false,
     }
 </script>
 
@@ -65,14 +67,22 @@
         outline: #007bff40 solid 3.5px;
         border: #80bdff solid 1px;
     }
+    .valid{
+        border: #28a745 solid 1px;
+    }
     .valid:focus{
         outline: #28a74540 solid 3.5px;
         border: #28a745 solid 1px;
     }
+
     .invalid:focus{
         outline: #dc354540 solid 3.5px;
         border: #dc3545 solid 1px;
     }
+    .invalid{
+        border: #dc3545 solid 1px;
+    }
+
     .errorMessage{
         font: 300 11px/13px Poppins, 'Open Sans', Arial, sans-serif;
         width: 100%;

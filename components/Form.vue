@@ -1,15 +1,15 @@
 <template>
     <div class="mt-10" v-if="showForm">
-        <Input :dataInput="formFields.firstName" v-model="contentForm.firstName.value" :error="contentForm.firstName.error"/>
-        <Input :dataInput="formFields.lastName" v-model="contentForm.lastName.value" :error="contentForm.lastName.error"/>
+        <Input :dataInput="formFields.firstName" v-model="contentForm.firstName.value" :error="contentForm.firstName.error" @eraseError="eraseError(formFields)"/>
+        <Input :dataInput="formFields.lastName" v-model="contentForm.lastName.value" :error="contentForm.lastName.error" @eraseError="eraseError"/>
         <Dropdown :dataDropdown="formFields.country" v-model="contentForm.country.value" :error="contentForm.country.error"/>
         <Input :dataInput="formFields.professionalId" v-model="contentForm.professionalId.value"/>
-        <Input :dataInput="formFields.emailAddress" v-model="contentForm.emailAddress.value" :error="contentForm.emailAddress.error"/>
+        <Input :dataInput="formFields.emailAddress" v-model="contentForm.emailAddress.value" :error="contentForm.emailAddress.error" @eraseError="eraseError"/>
         <Input :dataInput="formFields.phoneNumber" v-model="contentForm.phoneNumber.value"/>
         <Dropdown :dataDropdown="formFields.speciality" v-model="contentForm.speciality.value"/>
         <Input :dataInput="formFields.institution" v-model="contentForm.institution.value"/>
         <Richtext :dataRichtext="formFields.termsAndConditions"/>
-        <Checkbox :dataCheckbox="formFields.agreeInformation" v-model="contentForm.agreeInformation.value" :error="contentForm.agreeInformation.error"/>
+        <Checkbox :dataCheckbox="formFields.agreeInformation" v-model="contentForm.agreeInformation.value" :error="contentForm.agreeInformation.error" @eraseError="eraseError"/>
         <Button @submitForm="submitForm"/>
     </div>
 
@@ -34,7 +34,7 @@ export default {
                 phoneNumber: { value : ''},
                 speciality: { value : null},
                 institution: { value : ''},
-                agreeInformation: { value : false},
+                agreeInformation: { value : '', error : false},
             }
         };
     },
@@ -71,6 +71,13 @@ export default {
 
             
          
+        },
+        eraseError(){
+            this.contentForm.firstName.error = false
+            this.contentForm.lastName.error = false
+            this.contentForm.country.error = false
+            this.contentForm.emailAddress.error  = false
+            this.contentForm.agreeInformation.error = false
         }
     }
 }

@@ -6,7 +6,8 @@
         :id="dataCheckbox.fields.title"
         type="checkbox" 
         class="form-control"
-        @input="$emit('input', $event.target.value)" :value="value">
+        @input="$emit('input', $event.target.value)" 
+        @change="$emit('eraseError')">
         <label :for="dataCheckbox.fields.title">{{dataCheckbox.fields.checkbox.join()}}*</label>
       </section>
       
@@ -66,6 +67,7 @@ export default {
     }
     input:checked:before{
       background:  0% 0% / 10px 10px rgb(204, 204, 204);
+      outline: #28a74540 solid 3.5px;
     }
     label, input{
       display: inline;
