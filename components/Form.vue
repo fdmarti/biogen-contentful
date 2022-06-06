@@ -4,6 +4,7 @@
         <Input :dataInput="formFields.lastName"/>
         <Dropdown :dataDropdown="formFields.country"/>
         <Input :dataInput="formFields.professionalId"/>
+        <Input :dataInput="formFields.emailAddress"/>
         <Input :dataInput="formFields.phoneNumber"/>
         <Dropdown :dataDropdown="formFields.speciality"/>
         <Input :dataInput="formFields.institution"/>
