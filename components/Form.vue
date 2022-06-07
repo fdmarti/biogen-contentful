@@ -64,7 +64,6 @@ export default {
             let errors = 0;
 
             objectForm.forEach( el => {
-                console.log(el)
                 if (el.error) errors = errors+1
             })
 
@@ -74,12 +73,12 @@ export default {
          
         },
         eraseError(data){
-            switch(data){
-                case 'First Name*': this.contentForm.firstName.error = false; break;
-                case 'Last Name*': this.contentForm.lastName.error = false; break;
-                case 'Country*': this.contentForm.country.error = false; break;
-                case 'Email Address*': this.contentForm.emailAddress.error = false; break;
-                case 'Agree-Terms': this.contentForm.agreeInformation.error = false; break;
+            switch(data.field){
+                case 'First Name*': this.contentForm.firstName.error = data.stateError; break;
+                case 'Last Name*': this.contentForm.lastName.error = data.stateError; break;
+                case 'Country*': this.contentForm.country.error = data.stateError; break;
+                case 'Email Address*': this.contentForm.emailAddress.error = data.stateError; break;
+                case 'Agree-Terms': this.contentForm.agreeInformation.error = data.stateError; break;
             }
         }
     }

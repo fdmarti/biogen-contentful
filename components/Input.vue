@@ -10,7 +10,8 @@
                     :value="value"
                     :class="stateInput"
                     v-model="inputValue"
-                    @keyup="isValidField(dataInput.fields.label)"
+                    @keyup="isValidField(dataInput.fields)"
+                    @blur="isValidField(dataInput.fields)"
                 >
             </div>
             <span v-if="error">
@@ -34,13 +35,21 @@
 
         methods:{
             isValidField(fieldData){
-                this.$emit('eraseError',fieldData)
-                this.addClassToInput()
-            },
+                if ( this.error === undefined ) {
+                    this.stateInput = 'valid'
+                } else 
+                    { 
+                        let stateField = false;
+                        if ( this.inputValue.length > 0 ){
+                            this.stateInput = 'valid';
+                            stateField = false;
+                        }else{
+                            this.stateInput = 'invalid' 
+                            stateField = true;
+                        }
 
-            addClassToInput(){
-                if ( this.error === undefined ) this.stateInput = 'valid'
-                else this.inputValue.length > 0 ? this.stateInput = 'valid' : this.stateInput = 'invalid' 
+                        this.$emit('eraseError',{ field : fieldData.label , stateError : stateField})
+                    }
             }
         }
     }
