@@ -8,10 +8,11 @@
                     class="form-control"
                     @input="$emit('input', $event.target.value)"
                     :value="value"
-                    :class="{'valid' : this.value.length > 0}"
-                    @keydown="$emit('eraseError',dataInput.fields.label)">
+                    :class="stateInput"
+                    v-model="inputValue"
+                    @keyup="isValidField(dataInput.fields.label)"
+                >
             </div>
-
             <span v-if="error">
                 <h4 class="errorMessage">{{dataInput.fields.errorMessage}}</h4>
             </span>
@@ -24,7 +25,24 @@
     export default {
         name: "inputComponent",
         props:['dataInput','value','error'],
-        error: false,
+        data() {
+            return {
+                stateInput: '',
+                inputValue : ''
+            }
+        },
+
+        methods:{
+            isValidField(fieldData){
+                this.$emit('eraseError',fieldData)
+                this.addClassToInput()
+            },
+
+            addClassToInput(){
+                if ( this.error === undefined ) this.stateInput = 'valid'
+                else this.inputValue.length > 0 ? this.stateInput = 'valid' : this.stateInput = 'invalid' 
+            }
+        }
     }
 </script>
 

@@ -68,7 +68,7 @@ export default {
                 if (el.error) errors = errors+1
             })
 
-            if ( !errors ) console.log("aca se mandaria el form")
+            if ( !errors ) alert("Thank you for your interest in Biogen. We will be in contact with you shortly.")
 
             
          
